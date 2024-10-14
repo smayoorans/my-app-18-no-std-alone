@@ -1,5 +1,48 @@
+<div class="container">
+  <div class="row align-items-center" style="margin-top: 20px;">
+    <div class="col-6 mx-auto">
+      <div class="card" style="width: 500px; background-color: burlywood;">
+        <div class="card-body">
 
-<h1>{{title}}</h1>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" formControlName="email">
+
+              <small class="text-danger form-text" *ngIf="form.email.invalid">
+                <span *ngIf="form.email.errors?.required">Email is required!</span>
+                <span *ngIf="form.email.errors?.email">Email is invalid</span>
+            </small>
 
 
+            </div>
 
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="phone" formControlName="phone">
+              <small class="text-danger form-text" *ngIf="form.phone.invalid">
+                  Phone number should 10 digits.
+              </small>
+
+            </div>
+
+            <button type="button" [disabled]="registerForm.invalid" (click)="onSubmit()"
+            class="btn btn-primary">Submit</button>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
